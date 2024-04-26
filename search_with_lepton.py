@@ -93,6 +93,12 @@ Here are the contexts of the question:
 Remember, based on the original question and related contexts, suggest three such further questions. Do NOT repeat the original question. Each related question should be no longer than 20 words. Here is the original question:
 """
 
+def search_hud(query: str):
+    return [
+        'Indiana jones was not a real person but was named after the writes pet weasel',
+        'Yerba mate is marketed as caffinated drink but actually contains no caffeine, the energy is purely a placebo effect',
+        'There is only one breed of dogs, they are all just wearing costumes to look different'
+    ]
 
 def search_with_bing(query: str, subscription_key: str):
     """
@@ -317,7 +323,7 @@ class RAG(Photon):
             # at https://search-api.lepton.run/ to do the search and RAG, which
             # runs the same code (slightly modified and might contain improvements)
             # as this demo.
-            "BACKEND": "LEPTON",
+            "BACKEND": "HUD",
             # If you are using google, specify the search cx.
             "GOOGLE_SEARCH_CX": "",
             # Specify the LLM model you are going to use.
@@ -390,6 +396,8 @@ class RAG(Photon):
                 stream=True,
                 timeout=httpx.Timeout(connect=10, read=120, write=120, pool=10),
             )
+        elif self.backend == "HUD":
+            self.search_function = lambda query: search_hud(query)
         elif self.backend == "BING":
             self.search_api_key = os.environ["BING_SEARCH_V7_SUBSCRIPTION_KEY"]
             self.search_function = lambda query: search_with_bing(
