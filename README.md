@@ -82,4 +82,10 @@ You can also deploy your own version via
 lep photon run -n search-with-lepton-modified -m search_with_lepton.py --env BACKEND=BING --env BING_SEARCH_V7_SUBSCRIPTION_KEY=YOUR_BING_SUBSCRIPTION_KEY
 ```
 
+```shell
+lep photon run -n search-with-lepton-modified -m search_with_lepton.py --env BACKEND=HUD
+# or
+python search_with_lepton.py
+```
+
 Learn more about `lep photon` [here](https://www.lepton.ai/docs).

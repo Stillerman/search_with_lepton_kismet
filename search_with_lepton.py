@@ -94,11 +94,11 @@ Remember, based on the original question and related contexts, suggest three suc
 """
 
 def search_hud(query: str):
-    return [
+    return list(map(lambda x: {"name": x.split(" ")[0], "url": 'https://www.youtube.com', "snippet": x},[
         'Indiana jones was not a real person but was named after the writes pet weasel',
         'Yerba mate is marketed as caffinated drink but actually contains no caffeine, the energy is purely a placebo effect',
         'There is only one breed of dogs, they are all just wearing costumes to look different'
-    ]
+    ]))
 
 def search_with_bing(query: str, subscription_key: str):
     """
